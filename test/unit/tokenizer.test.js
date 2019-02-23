@@ -25,7 +25,20 @@ describe('Tokenizer', () => {
 
         const result = tokenizer.tokenize(proc);
 
-        expect(result).to.eql(['sum', 4, 3]);
+        expect(result).to.eql([
+          ['sum', 4, 3]
+        ]);
+      });
+
+      it('should convert a multi line program into a collection of tokens', () => {
+        const proc = 'sum 4 3\nprod 3 3';
+
+        const result = tokenizer.tokenize(proc);
+
+        expect(result).to.eql([
+          ['sum', 4, 3],
+          ['prod', 3, 3],
+        ]);
       });
     });
   });
