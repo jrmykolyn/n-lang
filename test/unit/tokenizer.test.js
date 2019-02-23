@@ -26,7 +26,7 @@ describe('Tokenizer', () => {
         const result = tokenizer.tokenize(proc);
 
         expect(result).to.eql([
-          ['sum', 4, 3]
+          [['sum', 4, 3]],
         ]);
       });
 
@@ -36,8 +36,18 @@ describe('Tokenizer', () => {
         const result = tokenizer.tokenize(proc);
 
         expect(result).to.eql([
-          ['sum', 4, 3],
-          ['prod', 3, 3],
+          [['sum', 4, 3]],
+          [['prod', 3, 3]],
+        ]);
+      });
+
+      it('should tokenize lines which contain compound expressions', () => {
+        const proc = 'sum 4 | prod 3 3';
+
+        const result = tokenizer.tokenize(proc);
+
+        expect(result).to.eql([
+          [['sum', 4], ['prod', 3, 3]],
         ]);
       });
     });

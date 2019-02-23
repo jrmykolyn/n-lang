@@ -1,17 +1,25 @@
 class Tokenizer {
-  static get LINE_DELIMITER() {
-    return '\n';
-  }
-
   static get CHAR_DELIMITER() {
     return ' ';
+  }
+
+  static get GROUP_DELIMITER() {
+    return '|';
+  }
+
+  static get LINE_DELIMITER() {
+    return '\n';
   }
 
   tokenize(proc) {
     return proc.split(Tokenizer.LINE_DELIMITER)
       .map((line) => {
-        return line.split(Tokenizer.CHAR_DELIMITER)
-          .map((token) => !isNaN(+token) ? +token : token)
+        return line.split(Tokenizer.GROUP_DELIMITER)
+          .map((group) => {
+            return group.split(Tokenizer.CHAR_DELIMITER)
+              .filter((token) => !!token)
+              .map((token) => !isNaN(+token) ? +token : token)
+          })
       });
   }
 }
