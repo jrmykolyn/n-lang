@@ -18,5 +18,31 @@ describe('Analyzer', () => {
     beforeEach(() => {
       analyzer = new Analyzer();
     });
+
+    describe('analyze()', () => {
+      it('should convert single line programs into the equivalent AST', () => {
+        const tokens = [[['sum', 4, 3]]];
+
+        const result = analyzer.analyze(tokens);
+
+        expect(result).to.eql({
+          program: [
+            {
+              type: 'Statement',
+              nodes: [
+                {
+                  type: 'Expression',
+                  nodes: [
+                    { type: 'Operator', value: 'sum' },
+                    { type: 'Operand', value: 4 },
+                    { type: 'Operand', value: 3 },
+                  ],
+                },
+              ],
+            },
+          ],
+        });
+      });
+    });
   });
 });
