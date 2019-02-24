@@ -50,6 +50,27 @@ describe('Tokenizer', () => {
           [['sum', 4], ['prod', 3, 3]],
         ]);
       });
+
+      it('should ignore leading and trailing newlines', () => {
+        const proc = '\n\n\nsum 4 3\n\n\n';
+
+        const result = tokenizer.tokenize(proc);
+
+        expect(result).to.eql([
+          [['sum', 4, 3]],
+        ]);
+      });
+
+      it('should ignore duplicate newline delimiters', () => {
+        const proc = 'sum 4 3\n\n\nprod 3 3';
+
+        const result = tokenizer.tokenize(proc);
+
+        expect(result).to.eql([
+          [['sum', 4, 3]],
+          [['prod', 3, 3]],
+        ]);
+      });
     });
   });
 });

@@ -13,6 +13,7 @@ class Tokenizer {
 
   tokenize(proc) {
     return proc.split(Tokenizer.LINE_DELIMITER)
+      .filter((line) => !!line)
       .map((line) => {
         return line.split(Tokenizer.GROUP_DELIMITER)
           .map((group) => {
