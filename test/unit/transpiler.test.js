@@ -6,9 +6,11 @@ describe('Transpiler', () => {
     it('should be importable', () => {
       expect(Transpiler).to.be.a('function');
     });
+  });
 
-    it('should be constructable', () => {
-      expect(new Transpiler()).to.be.an.instanceof(Transpiler);
+  describe('Constructor', () => {
+    it('return a Transpiler instance when invoked with a valid transpiler target', () => {
+      expect(new Transpiler({ target: 'EcmaTranspiler' })).to.be.an.instanceof(Transpiler);
     });
   });
 
@@ -16,7 +18,7 @@ describe('Transpiler', () => {
     let transpiler;
 
     beforeEach(() => {
-      transpiler = new Transpiler();
+      transpiler = new Transpiler({ target: 'EcmaTranspiler' });
     });
 
     describe('transpile()', () => {
@@ -33,17 +35,16 @@ describe('Transpiler', () => {
         const result = transpiler.transpile(expression);
 
         expect(result).to.eql({
-          type: 'ExpressionStatement',
-          expression: {
             type: 'BinaryExpression',
             left: {
+              type: 'NumericLiteral',
               value: 4,
             },
             right: {
+              type: 'NumericLiteral',
               value: 3,
             },
             operator: '+',
-          },
         });
       });
     });
