@@ -26,6 +26,7 @@ describe('Analyzer', () => {
         const result = analyzer.analyze(tokens);
 
         expect(result).to.eql({
+          type: 'Program',
           program: [
             {
               type: 'Statement',
@@ -53,6 +54,7 @@ describe('Analyzer', () => {
         const result = analyzer.analyze(tokens);
 
         expect(result).to.eql({
+          type: 'Program',
           program: [
             {
               type: 'Statement',
@@ -92,6 +94,7 @@ describe('Analyzer', () => {
         const result = analyzer.analyze(tokens);
 
         expect(result).to.eql({
+          type: 'Program',
           program: [
             {
               type: 'Statement',

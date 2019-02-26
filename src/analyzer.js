@@ -1,6 +1,7 @@
 class Analyzer {
   static get KEYWORDS() {
     return {
+      PROGRAM: 'Program',
       EXPRESSION: 'Expression',
       STATEMENT: 'Statement',
       OPERAND: 'Operand',
@@ -22,6 +23,7 @@ class Analyzer {
   analyze(tokens) {
     return {
       ...Analyzer.PROGRAM,
+      type: Analyzer.KEYWORDS.PROGRAM,
       program: tokens.map(this.analyzeLine),
     };
   }
