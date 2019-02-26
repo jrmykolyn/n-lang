@@ -1,2 +1,5 @@
 node_modules/
 **/*.swp
+
+# Demo
+demo/output/*.js
