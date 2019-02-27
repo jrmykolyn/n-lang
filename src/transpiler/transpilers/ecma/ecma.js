@@ -52,7 +52,9 @@ class EcmaTranspiler {
   transpileOperator(operator) {
     switch (operator.value) {
       case 'sum': return '+';
+      case 'diff': return '-';
       case 'prod': return '*';
+      case 'quot': return '/';
       default: null;
     }
   }

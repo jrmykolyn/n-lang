@@ -1,2 +1,4 @@
 sum 4 3
+diff 3 2
 prod 3 3
+quot 4 2

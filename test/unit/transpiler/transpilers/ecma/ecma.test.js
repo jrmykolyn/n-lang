@@ -136,8 +136,16 @@ describe('EcmaTranspiler', () => {
         expect(instance.transpileOperator({ value: 'sum' })).to.eq('+');
       });
 
+      it('should map "diff" to "-"', () => {
+        expect(instance.transpileOperator({ value: 'diff' })).to.eq('-');
+      });
+
       it('should map "prod" to "*"', () => {
         expect(instance.transpileOperator({ value: 'prod' })).to.eq('*');
+      });
+
+      it('should map "quot" to "/"', () => {
+        expect(instance.transpileOperator({ value: 'quot' })).to.eq('/');
       });
     });
   });
